@@ -2,12 +2,14 @@ const Sequelize = require('sequelize');
 const fs = require('fs');
 const {resolve} = require('path');
 
+
+
 module.exports = (() => {
     let instance;
 
     function initConnection() {
-        const client = new Sequelize('forangular', 'root', 'root', {
-            host: 'localhost',
+        const client = new Sequelize('forangular', 'machkivskyi', 'kz8569sd', {
+            host: '185.237.204.238',
             dialect: 'mysql'
         });
 
