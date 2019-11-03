@@ -6,6 +6,7 @@ const {authMiddleware,userMiddleware,filesMiddleware,albumMiddleware} = require(
 router.post('/auth/',authController.authAdmin);
 
 
+
 router.use(authMiddleware.checkAdminTokenMiddleware);  //check tokens
 // With use tokens
 router.post('/createAlbum',

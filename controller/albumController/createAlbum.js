@@ -6,11 +6,12 @@ const {albumService} = require('../../service');
 module.exports = async (req, res) => {
     try {
         const album = req.body; // take data from request
-        const photo= req.files.photos;  // in postMan set key field "photo"
+        const photo= req.files.photo;  // in postMan set key field "photo"
         const appRoot = global.appRoot;
         const {type} = await albumService.getTypeAlbumById(album.type_album_id); // get type shooting for create folder
+
         const {id, album_title} = await albumService.createAlbum(album); // create album
-        const photoDirectory = `gallery/${type}/${id}/${album_title.replace(/\s+/g, '')}`; //string adress
+        const photoDirectory = `${type}/${id}/${album_title.replace(/\s+/g, '')}`; //string adress
         const photoExtension = photo.name.split('.').pop();
         const photoName = `${uuid}.${photoExtension}`;
         await fs.mkdirSync(resolve(appRoot, 'public', photoDirectory), {recursive: true});
@@ -29,7 +30,8 @@ module.exports = async (req, res) => {
             .json({
                 message: e.message,
                 controller: e.controller
-            })
+            });
+        console.log(e);
     }
 
 };

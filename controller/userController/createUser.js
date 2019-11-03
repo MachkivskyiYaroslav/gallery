@@ -1,7 +1,7 @@
 const {userService}= require('../../service');
 const {USER_ROLES,USER_STATUS} = require('../../constant');
 const {passwordHasher}= require('../../helpers');
-module.exports= async (req,res,next) => {
+module.exports= async (req,res) => {
     try{
         const user = req.body;
         user.role_id= USER_ROLES.USER;
@@ -10,18 +10,13 @@ module.exports= async (req,res,next) => {
         user.password =await passwordHasher(user.password);
         await userService.createUser(user);
 
-
-
         res.status(201).end();
     }catch (e) {
-        res.json
-        {
-            res
-                .status(e.status)
-                .json({
-                    message: e.message,
-                    controller: e.controller
-                })
-        }
+        res
+            .status(e.status)
+            .json({
+                message: e.message,
+                controller: e.controller
+            });
     }
-}
+};
