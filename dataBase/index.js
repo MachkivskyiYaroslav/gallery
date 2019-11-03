@@ -11,6 +11,7 @@ module.exports = (() => {
         const client = new Sequelize('forangular', 'machkivskyi', 'kz8569sd', {
             host: '185.237.204.238',
             dialect: 'mysql'
+
         });
 
         const models = {};
