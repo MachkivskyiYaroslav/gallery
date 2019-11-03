@@ -10,6 +10,8 @@ module.exports= async (req,res,next) => {
         user.password =await passwordHasher(user.password);
         await userService.createUser(user);
 
+
+
         res.status(201).end();
     }catch (e) {
         res.json
