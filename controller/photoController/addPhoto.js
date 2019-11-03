@@ -7,7 +7,8 @@ module.exports = async (req, res) => {
     const {album_id} = req.body;
     let photos = [];
     const files = Object.values(req.files);
-    const {id, album_title,type} = await albumService.getAlbumById(album_id);
+    const {id, album_title,type_album_id} = await albumService.getAlbumById(album_id);
+    const {type} = await albumService.getTypeAlbumById(type_album_id);
     const photoDirectory = `gallery/${type}/${id}/${album_title.replace(/\s+/g, '')}`;
     await fs.mkdirSync(resolve(appRoot, 'public', photoDirectory), {recursive: true});
     for (let i = 0; i < files.length; i++) {
