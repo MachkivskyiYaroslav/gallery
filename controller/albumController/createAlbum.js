@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
         const {type} = await albumService.getTypeAlbumById(album.type_album_id); // get type shooting for create folder
 
         const {id, album_title} = await albumService.createAlbum(album); // create album
-        const photoDirectory = `${type}/${id}/${album_title.replace(/\s+/g, '')}`; //string adress
+        const photoDirectory = `albums/${type}/${id}/${album_title.replace(/\s+/g, '')}`; //string adress
         const photoExtension = photo.name.split('.').pop();
         const photoName = `${uuid}.${photoExtension}`;
         await fs.mkdirSync(resolve(appRoot, 'public', photoDirectory), {recursive: true});
