@@ -8,10 +8,9 @@ module.exports = (() => {
     let instance;
 
     function initConnection() {
-        const client = new Sequelize('forangular', 'machkivskyi', 'kz8569sd', {
-            host: '185.237.204.238',
+        const client = new Sequelize('forangular', 'root', 'root', {
+            host: 'localhost',
             dialect: 'mysql'
-
         });
 
         const models = {};
